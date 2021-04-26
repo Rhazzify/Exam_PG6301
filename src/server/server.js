@@ -5,10 +5,13 @@ const bodyParser = require("body-parser");
 const app = express()
 
 app.get("/api/profile", async (req, res) => {
-    if (!req.userinfo) {
+    const authorization = rew.header("Authorization")
+    if (!authorization) {
       return res.send(401);
     }
-    return res.json(req.userinfo);
+    return res.json({
+        username: "Master user"
+    });
   });
 
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));
