@@ -1,7 +1,7 @@
-import * as React from 'react';
+import  React, {useState} from 'react';
 import {BrowserRouter, Link} from 'react-router-dom'
 import {Route, Switch} from "react-router";
-import {useState} from 'react'
+
 import { ProfilePage } from './ProfilePage';
 import { fetchJson } from './fetchJson';
 import { LoginPage } from './LoginPage';
@@ -42,7 +42,7 @@ export function App() {
             </Route>
             <Route path={"/login/callback"}>
                 <LoginCallbackPage identityProvider={googleIdentityProvider} 
-                onAccessToken={(access_token) => setAccess_token(access_token)}
+                onAccesToken={access_token => setAccess_token(access_token)}
                 />
             </Route>
             <Route>
