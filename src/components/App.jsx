@@ -2,11 +2,14 @@ import * as React from 'react';
 import {BrowserRouter, Link} from 'react-router-dom'
 import {Route, Switch} from "react-router";
 import {useState} from 'react'
-
-
+import { ProfilePage } from './ProfilePage';
+import { fetchJson } from './fetchJson';
 
 export function App() {
  
+    async function loadProfile(){
+        return fetchJson("/api/profile");
+    }
 
     return (
     <BrowserRouter>
@@ -19,7 +22,7 @@ export function App() {
                 </ul>
             </Route>
             <Route path={"/profile"}>
-               <h1>Profile</h1>
+               <ProfilePage loadProfile = {loadProfile} />
             </Route>
             <Route path={"/login"} exact>
                 <h1>Login</h1>
@@ -34,5 +37,6 @@ export function App() {
     </BrowserRouter>
     );
 }
+
 
 
