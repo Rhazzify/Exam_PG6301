@@ -28,6 +28,9 @@ export function App() {
     <BrowserRouter>
         <Switch>
             <Route path={"/"} exact>
+                <LoginPage identityProvider = {googleIdentityProvider} />
+            </Route>
+            <Route path={"/test"} exact>
                 <h1>Welcome</h1>
                 <ul>
                     <li><Link to={"/profile"}>Profile</Link></li>
@@ -37,9 +40,7 @@ export function App() {
             <Route path={"/profile"}>
                <ProfilePage loadProfile = {loadProfile} />
             </Route>
-            <Route path={"/login"} exact>
-                <LoginPage identityProvider = {googleIdentityProvider} />
-            </Route>
+            
             <Route path={"/login/callback"}>
                 <LoginCallbackPage identityProvider={googleIdentityProvider} 
                 onAccesToken={access_token => setAccess_token(access_token)}

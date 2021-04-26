@@ -18,8 +18,8 @@ export function LoginPage({identityProvider}) {
 
     return (
     <div>
-        <h1>Login</h1>
-        <button onClick={handleLogin}>Login</button>
+        <h1>ChatApp</h1>
+        <button onClick={handleLogin}>Login with Google</button>
     </div>
     )
 }
