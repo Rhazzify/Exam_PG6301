@@ -1,19 +1,33 @@
 const express = require("express");
 const path = require("path");
-const bodyParser = require("body-parser");
+const fetch = require("node-fetch");
 
 const app = express()
+const discoveryURL = "https://accounts.google.com/.well-known/openid-configuration";
+
+async function fetchJson(url, options) {
+  const res = await fetch(url, options);
+  if (!res.ok) {
+      throw new Error(`Failed to fetch ${url}: ${res.status} ${res.statusText}`);
+  }
+  return await res.json();
+}
 
 app.get("/api/profile", async (req, res) => {
-    const authorization = req.header("Authorization")
+    const Authorization = req.header("Authorization")
   
-    if (!authorization) {
+    if (!Authorization) {
       return res.send(401);
     }
-  
-    return res.json({
-        username: "Master user"
-    });
+
+    const {userinfo_endpoint} = await fetchJson(discoveryURL)
+    const userinfo = await fetchJson(userinfo_endpoint, {
+      headers: {
+        Authorization
+      }
+    })
+    console.log(userinfo)
+    return res.json(userinfo);
   });
 
 app.use(express.static(path.resolve(__dirname, "..", "..", "dist")));

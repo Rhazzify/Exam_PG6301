@@ -21,7 +21,7 @@ export function ProfilePage({loadProfile}) {
     return (
         <>
         <h1>Profile</h1>
-        <div>{data.username}</div>
+        <div>{data.name}</div>
         </>
 
     ) 
