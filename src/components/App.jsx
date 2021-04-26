@@ -42,7 +42,7 @@ export function App() {
             </Route>
             <Route path={"/login/callback"}>
                 <LoginCallbackPage identityProvider={googleIdentityProvider} 
-                onAccesssToken = {access_token => setAccess_token(access_token)}
+                onAccessToken={(access_token) => setAccess_token(access_token)}
                 />
             </Route>
             <Route>
