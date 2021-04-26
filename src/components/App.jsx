@@ -5,9 +5,10 @@ import {useState} from 'react'
 import { ProfilePage } from './ProfilePage';
 import { fetchJson } from './fetchJson';
 import { LoginPage } from './LoginPage';
+import { LoginCallbackPage } from './LoginCallbackPage';
 
 export function App() {
-    //const [access_token, setAccess_token] = useState();
+    const [access_token, setAccess_token] = useState();
 
     const googleIdentityProvider = {
         discoveryURL: "https://accounts.google.com/.well-known/openid-configuration",
@@ -40,7 +41,9 @@ export function App() {
                 <LoginPage identityProvider = {googleIdentityProvider} />
             </Route>
             <Route path={"/login/callback"}>
-                <h1>Login callback</h1>
+                <LoginCallbackPage identityProvider={googleIdentityProvider} 
+                onAccesssToken = {access_token => setAccess_token(access_token)}
+                />
             </Route>
             <Route>
                  <h1>Not found</h1>
@@ -49,6 +52,7 @@ export function App() {
     </BrowserRouter>
     );
 }
+
 
 
 
