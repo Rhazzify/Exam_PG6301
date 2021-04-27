@@ -2,11 +2,14 @@ import * as React from 'react';
 import { useLoading } from './useLoading';
 import {useHistory} from 'react-router'
 import Sidebar from './Sidebar'
+import { useMessages } from '../contextModels/MessagesProvider'
+import OpenMessage from './OpenMessage'
 
 export function ProfilePage({loadProfile, id}) {
     const {loading, error, data} = useLoading(async () => await loadProfile());
 
     const history = useHistory()
+    const {selectedMessage } = useMessages()
 
     function goToDashboard(){
         history.push("/profile")
@@ -39,8 +42,9 @@ export function ProfilePage({loadProfile, id}) {
             </div>
             
             <div className="d-flex" style={{height: '100vh'}}>
-                <Sidebar id = {id}/>
-            </div>
+            <Sidebar id= {id}/> 
+            { selectedMessage && <OpenMessage />}
+        </div>
         </div>
     ) 
 }
