@@ -56,7 +56,11 @@ export function App() {
                 </ul>
             </Route>
             <Route path={"/googleprofile"}>
+            <ContactsProvider>
+                <MessagesProvider id={id}>
                <ProfilePage loadProfile = {loadProfile} />
+               </MessagesProvider>
+                </ContactsProvider>
             </Route>
             
             <Route path={"/login/callback"}>
