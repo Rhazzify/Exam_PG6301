@@ -43,7 +43,7 @@ export function App() {
             </Route>
             <Route  path={"/profile"}>
             <ContactsProvider>
-                <MessagesProvider>
+                <MessagesProvider id={id}>
                 <Dashboard onIdSubmit = {setId} id = {id}/>
                 </MessagesProvider>
                 </ContactsProvider>

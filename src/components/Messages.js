@@ -4,12 +4,17 @@ import { useMessages} from '../contextModels/MessagesProvider'
 
 export default function Messages() {
 
-    const { messages} = useMessages()
+    const { messages, selectMessageIndex} = useMessages()
 
     return (
         <ListGroup variant="flush">
             {messages.map((message, index) => (
-             <ListGroup.Item key = {index}>
+             <ListGroup.Item 
+             key = {index}
+             action
+             onClick={()=> selectMessageIndex(index)} 
+             active={message.selected}
+             >
 
                 {message.recipients.map(rec => rec.name).join(', ')}
                  {/*message.recipients.map(rec => `${rec.name} ${rec.id}`).join(', ')*/}
