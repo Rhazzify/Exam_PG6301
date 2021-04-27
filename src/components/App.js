@@ -6,8 +6,13 @@ import { ProfilePage } from './ProfilePage';
 import { fetchJson } from './fetchJson';
 import { LoginPage } from './LoginPage';
 import { LoginCallbackPage } from './LoginCallbackPage';
+import useLS from './useLS';
+import Dashboard from './Dashboard';
+import {ContactsProvider} from '../contextModels/ContactsProvider'
+import {MessagesProvider} from '../contextModels/MessagesProvider'
 
 export function App() {
+    const [id, setId] = useLS('id');
     const [access_token, setAccess_token] = useState();
 
     const googleIdentityProvider = {
@@ -15,6 +20,7 @@ export function App() {
         client_id: "996668650589-k58u051d4r4e4duht0af5nsm4mfe3npi.apps.googleusercontent.com",
 
     }
+
  
     async function loadProfile(){
         return fetchJson("/api/profile", {
@@ -25,11 +31,23 @@ export function App() {
     }
 
     return (
+
     <BrowserRouter>
         <Switch>
             <Route path={"/"} exact>
-                <LoginPage identityProvider = {googleIdentityProvider} />
+                <>
+                {id}
+                <LoginPage identityProvider = {googleIdentityProvider}
+                onIdSubmit={setId} />
+                </>
             </Route>
+            <Route  path={"/profile"}>
+            <ContactsProvider>
+                <MessagesProvider>
+                <Dashboard onIdSubmit = {setId} id = {id}/>
+                </MessagesProvider>
+                </ContactsProvider>
+            </Route> 
             <Route path={"/test"} exact>
                 <h1>Welcome</h1>
                 <ul>
@@ -37,7 +55,7 @@ export function App() {
                     <li><Link to={"/login"}>Login</Link></li>
                 </ul>
             </Route>
-            <Route path={"/profile"}>
+            <Route path={"/googleprofile"}>
                <ProfilePage loadProfile = {loadProfile} />
             </Route>
             

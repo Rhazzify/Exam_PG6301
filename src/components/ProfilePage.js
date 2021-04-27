@@ -1,8 +1,16 @@
 import * as React from 'react';
 import { useLoading } from './useLoading';
+import {useHistory} from 'react-router'
+import Sidebar from './Sidebar'
 
-export function ProfilePage({loadProfile}) {
+export function ProfilePage({loadProfile, id}) {
     const {loading, error, data} = useLoading(async () => await loadProfile());
+
+    const history = useHistory()
+
+    function goToDashboard(){
+        history.push("/profile")
+    }
 
     if (loading) {
         return <>
@@ -19,16 +27,20 @@ export function ProfilePage({loadProfile}) {
     }
     
     return (
-        <>
-        <h1>Profile</h1>
-        <div>{data.name}</div>
-        {data.picture &&(
+        <div className="d-flex">
             <div>
-                <img src={data.picture}></img>
+            <h1>Authenticated with Google</h1>
+            <div>{data.name}</div>
+            {data.picture &&(
+                <div>
+                    <img src={data.picture}></img>
+                </div>)}
+            <div>{data.email}</div>
             </div>
-        )}
-        <div>{data.email}</div>
-        </>
-
+            
+            <div className="d-flex" style={{height: '100vh'}}>
+                <Sidebar id = {id}/>
+            </div>
+        </div>
     ) 
 }
