@@ -35,7 +35,7 @@ export function MessagesProvider({children}) {
     }
 
     return (
-        <MessagesContext.Provider value= {{ messages, createMessage}}>
+        <MessagesContext.Provider value= {value}>
             {children}
         </MessagesContext.Provider>
     )

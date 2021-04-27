@@ -10,7 +10,11 @@ export default function Messages() {
         <ListGroup variant="flush">
             {messages.map((message, index) => (
              <ListGroup.Item key = {index}>
-                 {message.recipients.map(r => r.name).join(',')} 
+
+                {message.recipients.map(rec => rec.name).join(', ')}
+                 {/*message.recipients.map(rec => `${rec.name} ${rec.id}`).join(', ')*/}
+                 {/*message.recipients.join(',')*/} 
+
              </ListGroup.Item>   
             ))}
         </ListGroup>
