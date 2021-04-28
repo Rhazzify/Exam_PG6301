@@ -43,7 +43,7 @@ export default function Sidebar({id}) {
                     Your Id: <span className="text-muted" placeholdertext="Google Authenitcated">{id}</span>
                 </div>
                 <Button onClick={() => setModalOpen(true)} className="rounded-0">
-                    New {messageBoxOpen ? 'Messages' : 'Contacts'}
+                    New {messageBoxOpen ? 'GroupChats' : 'Contacts'}
                 </Button>
             </Tab.Container>
 

@@ -9,8 +9,9 @@ export default function OpenMessage() {
 
     function sendThisMessage(e){
         e.preventDefault()
-
-        sendMessage(selectedMessage.recipients.map(r => r.id), text)
+        console.log(recipients)
+        
+        sendMessage(selectedMessage.recipients.map(recipients => recipients.id), text)
         setText('')
     }
 

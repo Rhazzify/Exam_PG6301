@@ -39,7 +39,7 @@ export function LoginPage({identityProvider, onIdSubmit}) {
     return (
         
     <Container className="align-items-center d-flex" style = {{height: '100vh'}}>
-        <div>
+        <div data-testid="loginPage-1">
         <h1>ChatApp</h1>
         <button onClick={handleLogin}>Login with Google</button>
         </div>
@@ -49,7 +49,7 @@ export function LoginPage({identityProvider, onIdSubmit}) {
                 <Form.Label>Enter your ID</Form.Label>
                 <Form.Control type="text" ref={idRef} required />
             </Form.Group>
-            <Button type="submit" className="mr-2">Login</Button>
+            <Button placheholdertext="login" type="submit" className="mr-2">Login</Button>
             <Button onClick={createNewId} variant="secondary">Create A New Id</Button>
         </Form>
         

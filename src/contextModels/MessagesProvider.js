@@ -16,7 +16,7 @@ export function MessagesProvider({id, children}) {
 
     function createMessage( recipients ){
         setMessages(prevMessages => {
-            return [...prevMessages, {recipients, conversation : []}]
+            return [...prevMessages, {recipients, message : []}]
         })
     }
 
@@ -48,8 +48,8 @@ export function MessagesProvider({id, children}) {
         addMessageToConversation({recipients, text, sender: id})
     }
 
-    const formattedMessages = messages.map((message, index) => {
-        const recipients = message.recipients.map(recipient => {
+    const formattedMessages = messages.map((conversation, index) => {
+        const recipients = conversation.recipients.map(recipient => {
             const contact = contacts.find(contact => {
                 return contact.id === recipient
             })
@@ -57,7 +57,7 @@ export function MessagesProvider({id, children}) {
         return {id: recipient, name}
         })
         const selected = index === selectedMessageIndex
-        return { ...message, recipients, selected}
+        return { ...conversation, recipients, selected}
     })
 
     const value = {
@@ -69,7 +69,7 @@ export function MessagesProvider({id, children}) {
     }
 
     return (
-        <MessagesContext.Provider value= {value}>
+        <MessagesContext.Provider value = {value}>
             {children}
         </MessagesContext.Provider>
     )

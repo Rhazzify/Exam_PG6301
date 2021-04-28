@@ -31,7 +31,7 @@ function handleCheckboxChange(contactId) {
     return (
         <>
         <Modal.Header closeButton>
-            Create Message
+            Create GroupChat
         </Modal.Header>
         <Modal.Body>
             <Form onSubmit={takeCareOfSubmit}>
