@@ -6,6 +6,7 @@
  Combined codes from lecture and research on the web, mostly code from Lecture 12 to get google Authentification.
  
  The application will run at localhost:3000
+ NB! If it crash and shows nothing, close build and run npm start again & refresh page, if on google authenification go back to localhost:3000 and try again
  
  1. Start at login, user can authenticate with google or get an id by clicking Create New Id and placing that in the field.
  2. Get redirected to either a googlepage or profilepage where user can create contact and group messages
